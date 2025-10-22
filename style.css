@@ -1,0 +1,304 @@
+/* 全局与配色 */
+* { box-sizing: border-box; }
+/* 全局中文正文字体 */
+body { font-family: "Noto Serif SC", serif; }
+
+/* 奖状大标题（竖排“嘉奖令”） */
+.vertical-title { font-family: "Long Cang", cursive; }
+
+/* 奖状正文、Meta 继续用宋体即可（保持不变，也可显式设置） */
+.award-content { font-family: "Noto Serif SC", serif; }
+
+/* UI/大字标题（打字机上下两段） */
+#text-content > div,
+#typewriter { font-family: "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; height: 100%; overflow-x: hidden; width: 100%;
+  display: flex; flex-direction: column; justify-content: flex-start; color:#1F2937;
+  background-image: linear-gradient(180deg, #F7F3E8, #EEF6F3);
+}
+
+:root{
+  --ink:#1F2937;          /* 墨灰 */
+  --accent:#44B39B;       /* 玉翠绿 */
+  --accent-2:#6AA9FF;     /* 湖蓝 */
+  --gold:#C7A46A;         /* 暖金（分隔线点缀） */
+  --cinnabar:#C43D3D;     /* 朱砂（备用） */
+}
+
+/* 顶部仅 LOGO（更大，移动端自适配） */
+#head.only-logo{
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+  background: rgba(255,255,255,.7); backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e9e3d4;
+}
+#logo { height: 80px; margin: 0; }           
+@media (max-width: 640px){
+  #logo { height: 64px; }                   
+}
+#logo:hover { transform: scale(1.04); transition: transform .2s ease; }
+.award-wrap{
+  padding: calc(80px + 28px) 16px 40px;      /* 80 为 logo 高度；+28 额外空隙 */
+}
+
+@media (max-width: 640px){
+  .award-wrap{ padding: calc(64px + 20px) 12px 28px; }  /* 同步手机端 */
+}
+/* 奖状：容器与卡片（自适应文本，不固定比例） */
+.award-wrap{
+  padding: calc(96px + 18px) 16px 40px;       /* 顶部留给固定头部 */
+  display:flex; justify-content:center; align-items:flex-start;
+}
+@media (max-width: 640px){
+  .award-wrap { padding: calc(72px + 14px) 12px 28px; }
+}
+.award-card{
+  position: relative;
+  width: min(960px, 94vw);
+  background: radial-gradient(100% 100% at 50% 0%, #fff 0 62%, #f5efe2 100%);
+  border: none;            /* ✅ 无边框 */
+  border-radius: 14px;
+  padding: 36px 48px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+/* 背景墨影（纯装饰） */
+.ink-mountain{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+   radial-gradient(55% 38% at 50% 58%, rgba(94,124,139,.16), transparent 60%),
+   radial-gradient(38% 28% at 30% 72%, rgba(94,124,139,.12), transparent 70%),
+   radial-gradient(40% 30% at 70% 74%, rgba(94,124,139,.12), transparent 70%);
+}
+
+/* 竖排标题：小屏自动改为横排，避免挤压 */
+.vertical-title{
+  writing-mode: vertical-rl; text-orientation: upright; letter-spacing: .2em;
+  font-size: 42px; position: absolute; top: 20px; right: 12px; margin: 0; color: var(--ink);
+}
+@media (max-width: 720px){
+  .vertical-title{
+    position: static; writing-mode: horizontal-tb; text-orientation: mixed;
+    font-size: 28px; letter-spacing: .15em; margin-bottom: 8px;
+  }
+}
+
+/* 正文区域（为竖排标题在右侧预留空间；小屏撤销） */
+.award-content{ margin-right: 72px; }
+@media (max-width: 720px){ .award-content{ margin-right: 0; } }
+.award-content h2{ margin:0 0 10px; font-size:28px; color:var(--ink); }
+.award-content p{ line-height:1.9; margin: .7em 0; font-size: 16px; }
+.award-content .meta{ color:#596273; font-size:14px; }
+
+/* 分割线（无文本） */
+.divider{
+  width: min(1100px, 94vw); height: 0; margin: 12px auto 6px;
+  border-top: 2px dashed var(--gold);
+  border-bottom: 2px dashed var(--gold);
+  padding: 10px 0;        /* 形成上下虚线双排效果 */
+}
+
+/* 浮动图片：桌面自由摆放；移动端自动栈叠或隐藏 */
+/* .float-gallery{
+  width: min(1200px, 94vw); margin: 8vh auto 0; height: 600px; position: relative;
+}
+.float-gallery > img{
+  box-shadow: 0 6px 20px rgba(0,0,0,.15); transition: 300ms; scale: 70%; border-radius: 16px;  
+}
+#flexpng1{ right:0px;   top:-200px; position:relative; z-index:1; }
+#flexpng2{ right:290px; top:150px;  position:relative; z-index:2; }
+#flexpng3{ right:-210px;top:-500px; position:relative; z-index:1; }
+#flexpng4{ left:-100px; top:-300px; position:relative; z-index:2; }
+#flexpng5{ left:700px;  top:-1000px;position:relative; z-index:1; } */
+
+/* 移动端：重排为栈叠，避免溢出 */
+/* @media (max-width: 900px){
+  .float-gallery{ height: auto; display:flex; flex-wrap: wrap; justify-content:center; gap: 12px; }
+  .float-gallery > img{
+    position: static !important; scale: 100%; width: clamp(140px, 44vw, 220px); height: auto;
+  }
+}
+@media (max-width: 480px){
+  .float-gallery{ display: none; }
+} */
+/* ========= 图片墙（稳态版） ========= */
+.float-gallery{
+  --hover-mult: 1.04;                     /* 悬停放大倍数 */
+  --active-mult: 1.15;                    /* 点击放大倍数（在原尺寸基础上乘） */
+  --dur: 280ms;                            /* 过渡时长 */
+  --ease: cubic-bezier(.22,.61,.36,1);     /* 过渡曲线（自然/顺滑） */
+
+  position: relative;
+  width: min(1200px, 94vw);
+  height: 600px;                     /* 放大后若被裁，可调 720/800 */
+  margin: 8vh auto 0;
+  overflow: visible;
+  --g: 1.5;
+}
+
+/* 位置与动画全部走变量，transform 只写一次，避免互相覆盖 */
+.float-gallery > img{
+  position: absolute;
+  left: var(--left, 50%);
+  top:  var(--top,  50%);
+  width: var(--w, 320px)*var(--g);
+  height: auto;
+
+  /* 统一 transform：位置 + 漂移 + 缩放 + 旋转 */
+  --s:  var(--s, 1);                    /* 每张图的基础尺寸（可在 #flexpngN 上改） */
+  --ty: var(--ty, 0px);                   /* 漂移（JS 在改这个） */
+  --rot:var(--rot, 0deg);
+  transform: translate(-50%, calc(-50% + var(--ty))) scale(var(--s)) rotate(var(--rot));
+  transform-origin: center;
+
+  z-index: var(--z, 1);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+
+  /* 过渡手感：只对 transform 与阴影做过渡 */
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow 200ms ease;
+  will-change: transform;  /* 性能 */
+}
+
+/* 悬停：在当前基础上乘以 hover 倍数 */
+.float-gallery > img:not(.active):hover{
+  transform:
+    translate(-50%, calc(-50% + var(--ty)))
+    scale(calc(var(--s) * var(--hover-mult)))
+    rotate(var(--rot));
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+}
+
+/* 点击：在当前基础上乘以 active 倍数（JS 只加 .active 类） */
+.float-gallery > img.active{
+  transform:
+    translate(-50%, calc(-50% + var(--ty)))
+    scale(calc(var(--s) * var(--active-mult)))
+    rotate(var(--rot));
+  z-index: 9;
+  box-shadow: 0 16px 36px rgba(0,0,0,.28);
+}
+
+/* —— 给每张图一个“起始位置/尺寸/旋转” —— */
+/* 按需修改百分比与像素即可，不受窗口缩放影响 */
+#flexpng1{ --left: 22%; --top: 34%; --w: 300px; --rot: -4deg; --s: .68; --z: 2; }
+#flexpng2{ --left: 44%; --top: 66%; --w: 360px; --rot:  3deg; --s: .62; --z: 3; }
+#flexpng3{ --left: 64%; --top: 32%; --w: 300px; --rot: -2deg; --s: .70; --z: 1; }
+#flexpng4{ --left: 80%; --top: 58%; --w: 340px; --rot:  2deg; --s: .64; --z: 2; }
+#flexpng5{ --left: 30%; --top: 78%; --w: 280px; --rot:  1deg; --s: .72; --z: 1; }
+
+
+/* —— 中等小屏：稍微减小放大倍数，避免“放大后挤出容器” —— */
+@media (max-width: 1100px){
+  .float-gallery{
+    --hover-mult: 1.02;
+    --active-mult: 1.08;
+  }
+}
+
+/* —— 小屏：彻底关闭 transform 放大，改为网格/栈叠 —— */
+@media (max-width: 900px){
+  .float-gallery{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    height: auto;
+
+    /* 关键：小屏不做放大 */
+    --hover-mult: 1;
+    --active-mult: 1;
+  }
+
+  .float-gallery > img{
+    position: static !important;
+    width: 100%;
+    transform: none !important;         /* 关闭 translate/scale/rotate，杜绝“乱飞” */
+    transition: box-shadow 180ms ease;  /* 仍可有小阴影变化 */
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    border-radius: 12px;
+  }
+
+  .float-gallery > img.active{
+    transform: none !important;         /* 点了也不放大 */
+    box-shadow: 0 10px 20px rgba(0,0,0,.14);
+  }
+}
+
+@media (max-width: 480px){
+  .float-gallery{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+/* 视频 + 打字机区域（自适配） */
+.media-text{
+  width: min(1200px,94vw); margin: 16vh auto 0; display:flex; gap: clamp(24px, 5vw, 50px);
+  align-items:flex-start; min-height: 400px;
+}
+#video-content{ flex: 1 1 640px; }
+video{ width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08); background:#000; }
+#text-content{ flex: 0 1 420px; display:flex; flex-direction:column; align-items:center; }
+#text-content>div{ color:#1F2937; text-align:center; width: 100%; font-weight: 900; font-size: clamp(40px, 6vw, 56px); }
+#typeout{ min-height:28px; margin-top: 4px; display:flex; justify-content:center; }
+#typeout>p{ display:none; }  /* 源文案隐藏，由 JS 接管 */
+
+
+#typewriter{
+  display: inline-block;           /* <-- 新增：显式可见 */
+  padding-right: 2px;
+  font-size: 18px;
+  color:#3b4754;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#typewriter::after{
+  content:"";
+  display:inline-block;
+  width:2px; height:1em; background:#1F2937; margin-left:2px;
+  vertical-align: -0.15em;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce){
+  #typewriter::after{ animation: none; }
+}
+
+/* 页脚与回到顶部 */
+#block7{ background: var(--accent); width:100vw; height:6px; margin-top: 14vh; }
+#block8{ display:flex; flex-direction:column; align-items:center; width:min(1200px,92vw); margin: 8vh auto 10vh; }
+#b8-1{ font-size: clamp(28px, 4vw, 40px); margin: 20px; color:#1F2937; }
+#b8-2{ color:#6b7280; text-align:center; }
+#b8-3{ color:#374151; display:flex; justify-content:center; flex-wrap: wrap; }
+#b8-3>div{ margin:10px; }
+#b8-4{ color:#9aa3ad; font-size:12px; text-align:center; }
+
+#totop{
+  display:none; transform:scale(.9); position:fixed; right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom)); z-index: 20;
+  background: transparent; border: 0; padding: 0; cursor: pointer;
+}
+#totop img{ width:56px; height:56px; filter: drop-shadow(0 6px 14px rgba(0,0,0,.18)); }
+@media (max-width: 640px){ #totop img{ width:48px; height:48px; } }
+@media print{
+  body{ background:#fff; }
+  #head, #divider, #block4, #block6, #block7, #block8, #totop { display:none !important; }
+  .award-wrap{ padding: 0; }
+  .award-card{ box-shadow:none; }
+}

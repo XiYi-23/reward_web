@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>奖状</title>
+  <link rel="stylesheet" href="./style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body id="body">
+
+  <!-- 顶部：仅 LOGO（固定在顶） -->
+  <div id="head" class="only-logo" role="banner">
+    <a href="#" aria-label="主页">
+      <img src="./logo_yysls.png" alt="logo" id="logo" />
+    </a>
+  </div>
+
+  <!-- 第一部分：奖状（自适应文本，无边框） -->
+  <main id="award" class="award-wrap" role="main">
+    <article class="award-card" aria-labelledby="award-title">
+      <div class="ink-mountain" aria-hidden="true"></div>
+
+      <!-- 竖排标题（小屏会自动变成横排） -->
+      <h1 id="award-title" class="vertical-title">奖状</h1>
+
+      <!-- 正文（自由增删段落即可，卡片会自动变高） -->
+      <div class="award-content">
+        <!-- <h2></h2> -->
+        <p>谢鸣月自入门以来，勤修不辍，于半年内于造诣上进境颇速。在自律与行动力方面尤为突出，积极参与刀房练习、联机探索、止戈群策、十人副本等团建活动。其人尊师重道，团结同伴，平日恪守门规，谦和礼让，遇难不退，遇易不懈，能以所学回馈同侪，颇得师友称许。</p>
+        <p>特此嘉奖，以示嘉勉。盼尔持之以恒，再求一境；他日试锋，不负此章。</p>
+        <p class="meta">签发人：焦冰</p>
+        <p class="meta">乙巳年 丙戌月 甲子日</p>
+      </div>
+      <!-- ✅ 已去掉红章 -->
+    </article>
+  </main>
+
+  <!-- 分割线（无文本） -->
+  <section id="divider" class="divider" aria-hidden="true"></section>
+
+  <!-- 浮动图片（桌面展示；手机端自动栈叠或可隐藏） -->
+  <section id="block4" class="float-gallery">
+    <img src="./yyimg1.jpg" alt="" id="flexpng1" onclick="flow('flexpng1')" decoding="async" loading="lazy">
+    <img src="./yyimg2.jpg" alt="" id="flexpng2" onclick="flow('flexpng2')" decoding="async" loading="lazy">
+    <img src="./yyimg3.jpg" alt="" id="flexpng3" onclick="flow('flexpng3')" decoding="async" loading="lazy">
+    <img src="./yyimg4.jpg" alt="" id="flexpng4" onclick="flow('flexpng4')" decoding="async" loading="lazy">
+    <img src="./yyimg5.jpg" alt="" id="flexpng5" onclick="flow('flexpng5')" decoding="async" loading="lazy">
+    <!-- <img src="./flexpng1.png" alt="" id="flexpng1" onclick="flow('flexpng1')" decoding="async" loading="lazy"> -->
+    <!-- <img src="./flexpng2.png" alt="" id="flexpng2" onclick="flow('flexpng2')" decoding="async" loading="lazy"> -->
+    <!-- <img src="./flexpng3.png" alt="" id="flexpng3" onclick="flow('flexpng3')" decoding="async" loading="lazy"> -->
+    <!-- <img src="./flexpng4.png" alt="" id="flexpng4" onclick="flow('flexpng4')" decoding="async" loading="lazy"> -->
+    <!-- <img src="./flexpng5.png" alt="" id="flexpng5" onclick="flow('flexpng5')" decoding="async" loading="lazy"> -->
+  </section>
+
+  <!-- 视频 + 打字机文案 -->
+  <section id="block6" class="media-text">
+    <div id="video-content">
+      <video src="./video_yysls.mp4" id="video" preload="metadata" playsinline></video>
+    </div>
+
+    <div id="text-content" aria-live="polite">
+      <div>立志为始</div>
+
+      <!-- 打字机文案来源：可自由增删，JS 会自动读取 -->
+      <div id="typeout">
+        <p id="typer1">立志不息，学无止境。</p>
+        <p id="typer2">招式可练，心法须修。</p>
+        <p id="typer3">持之以恒，渐入佳境。</p>
+        <p id="typer4">以勤破难，以稳致远。</p>
+        <p id="typer5">道在脚下，行以致之。</p>
+      </div>
+
+      <div>步履不息</div>
+    </div>
+  </section>
+
+  <div id="block7" aria-hidden="true"></div>
+
+  <footer id="block8" role="contentinfo">
+    <div id="b8-1">燕云十六声</div>
+    <div id="b8-2">止戈 | 侠境 | 同游 | 闲趣</div>
+    <div id="b8-3"><div>×</div><div>×</div><div>×</div><div>×</div><div>×</div></div>
+    <div id="b8-4">by -- 师傅焦冰</div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button id="totop" aria-label="回到顶部" title="回到顶部">
+    <img src="./回到顶部.svg" alt="">
+  </button>
+
+  <script src="./code.js"></script>
+</body>
+</html>
